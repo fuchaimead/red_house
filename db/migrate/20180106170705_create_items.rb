@@ -10,9 +10,3 @@ class CreateItems < ActiveRecord::Migration[5.1]
     end
   end
 end
-
-
-
-item controller api/items index update
-
-be rails g controller api/items index update

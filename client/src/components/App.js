@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NoMatch from './NoMatch';
 import NavBar from './NavBar';
+import Cart from './Cart'
 import Login from './Login';
 import Register from './Register';
 import Flash from './Flash';
@@ -25,6 +26,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/about' component={About} />
             <Route exact path='/menu' component={Menu} />
+            <Route exact path='/cart' component={Cart} />
             <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />
             <Route component={NoMatch} />
