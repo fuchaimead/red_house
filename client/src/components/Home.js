@@ -15,7 +15,7 @@ class Home extends Component {
       <div style={styles.image}>
       <Segment style={styles.opacity}>
       <Header as='h1' textAlign='center'>Red House Chinese Restaurant</Header>
-      <Header as='h3' textAlign='center'>Enjoy delicious chinese food in Salt Lake City. Now you can <a href='http://localhost:3000/cart'> order online. </a> </Header>
+      <Header as='h3' textAlign='center'>Enjoy delicious chinese food in Salt Lake City. Now you can <a href='http://localhost:3000/menu'> order online. </a> </Header>
         <Container> 
           <Grid columns={3} divided>
             <Grid.Row>
