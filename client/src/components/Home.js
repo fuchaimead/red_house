@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Header, Segment } from 'semantic-ui-react';
-import Wallpaper from '../images/Wallpaper.jpg'
+import Wallpaper from '../images/Wallpaper.jpg';
 
 class Home extends Component {
   render() {
