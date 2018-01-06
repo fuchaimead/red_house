@@ -45,7 +45,7 @@ class Cart extends Component {
         {this.displayCartItem()}
       </ul>
         <Modal
-          trigger={<Button onClick={this.handleOpen}>Basic Modal</Button>}
+          trigger={<Button onClick={this.handleOpen}>Total</Button>}
           basic size=
           'small'
           open={this.state.modalOpen}
