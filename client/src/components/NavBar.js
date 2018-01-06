@@ -3,6 +3,7 @@ import { Menu, Segment } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../actions/auth';
+import ProtectedRoute from 'react-router-protected-route'
 
 class NavBar extends Component {
   rightNavs = () => {
@@ -33,7 +34,7 @@ class NavBar extends Component {
   render() {
     return (
       <div>
-        <Segment inverted style={styles.corners}> 
+        <Segment inverted style={styles.corners}>
         <Menu inverted pointing secondary>
           <Link to='/'>
             <Menu.Item name='home' />
@@ -49,7 +50,7 @@ class NavBar extends Component {
           </Link>
           { this.rightNavs() }
         </Menu>
-        </Segment> 
+        </Segment>
       </div>
     );
   }
