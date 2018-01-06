@@ -34,7 +34,6 @@ import { Segment, Container, Grid, List, Header } from 'semantic-ui-react'
                   <List link inverted>
                     <List.Item as='a'>Address: 1465 State St #10, Salt Lake City, UT 84108</List.Item>
                     <List.Item as='a'>Phone: (801) 821-3622</List.Item>
-                    <List.Item as='a'>Hours: 11:30AM–3PM, 4:30–9PM</List.Item>
                   </List>
                 </Grid.Column>
                 <Grid.Column width={7}>
