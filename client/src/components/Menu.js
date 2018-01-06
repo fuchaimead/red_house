@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Header, Segment, Button, List, Icon, Table, Container, Input, Modal, Dropdown} from 'semantic-ui-react';
+import { Header, Segment, Button, List, Icon, Table, Container, Input,  Dropdown, Modal } from 'semantic-ui-react';
 import axios from 'axios'
 import { setHeaders } from '../actions/headers'
 import { connect } from 'react-redux'
 import Wallpaper from '../images/Wallpaper.jpg'
+import { setFlash } from '../actions/flash'
 
 class Menu extends Component {
 
@@ -21,13 +22,14 @@ class Menu extends Component {
     if (this.props.user.is_admin){
       return this.state.items.map( item => {
         return (
-          <Segment inverted>
-          <List divided inverted relaxed>
+          <Segment basic>
+          <List>
             <List.Item key={item.id}>
               <List.Content>
                 <List.Header> {item.name} </List.Header>
                 {item.price}
               {item.description}
+              <br />
             <Button onClick={ () => this.removeItem(item.id)}>Delete Item</Button>
             <Modal
               trigger={<Button onClick={this.handleOpen}>Edit</Button>}
@@ -73,8 +75,7 @@ class Menu extends Component {
     else {
       return this.state.items.map( item => {
         return (
-
-            <Table.Row>
+           <Table.Row key={item.id}>
                 <Table.Cell>
                 {item.name}
                 <br />
@@ -84,10 +85,10 @@ class Menu extends Component {
                 ${item.price}
                 </Table.Cell>
                 <Table.Cell>
-            <Icon name='add' onClick={ () => this.addToCart(item.id)}> </Icon>
+             <Icon name='add' onClick={ () => this.addToCart(item.id)} style={styles.pointer} > </Icon>
                 </Table.Cell>
                 <Table.Cell>
-                <Input />
+                <Input type='number'/>
                 </Table.Cell>
               </Table.Row>
         )
@@ -108,6 +109,7 @@ class Menu extends Component {
   addToCart = (itemId) => {
     axios.put(`/api/items/${itemId}`, {user_id: this.props.user.id})
       .then( res => {
+        this.props.dispatch(setFlash('Item Added to Cart', 'green'))
         console.log(res)
       })
   }
@@ -140,34 +142,13 @@ class Menu extends Component {
       <Segment style={styles.opacity}>
       <Header as='h1' textAlign='center'>Menu</Header>
       <Container>
-        <Segment>
-        <Button onClick={this.addItem}>Add Item</Button>
-        <input
-          type="text"
-          id="name"
-          onChange={this.handleChange}
-          placeholder="Name"
-        />
-        <textarea
-          type="textArea"
-          id="description"
-          onChange={this.handleChange}
-          placeholder="Description"
-        ></textarea>
-        <input
-          type="number"
-          id="price"
-          onChange={this.handleChange}
-          placeholder="Price"
-        />
-        </Segment>
         <Table>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Menu Items</Table.HeaderCell>
-              <Table.HeaderCell>Price</Table.HeaderCell>
-              <Table.HeaderCell>Add to Cart</Table.HeaderCell>
-              <Table.HeaderCell>Quantity</Table.HeaderCell>
+          <Table.Header >
+            <Table.Row >
+              <Table.HeaderCell style={styles.header}>Menu Items</Table.HeaderCell>
+              <Table.HeaderCell style={styles.header}>Price</Table.HeaderCell>
+              <Table.HeaderCell style={styles.header}>Add to Cart</Table.HeaderCell>
+              <Table.HeaderCell style={styles.header}>Quantity</Table.HeaderCell>
           </Table.Row>
           </Table.Header>
            <Table.Body>
@@ -191,8 +172,12 @@ const styles = {
     backgroundColor: "rgba(200, 200, 200, 0)",
     height: "100vh"
   },
-  icon: {
-    color: 'white'
+  header: {
+    color: 'white',
+    backgroundColor: 'black'
+  },
+  pointer: {
+    cursor: 'pointer'
   }
 }
 const mapStateToProps = (state) => {

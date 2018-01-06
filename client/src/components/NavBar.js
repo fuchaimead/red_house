@@ -8,10 +8,12 @@ import { handleLogout } from '../actions/auth';
 class NavBar extends Component {
   rightNavs = () => {
     const { user, dispatch, history } = this.props;
-
     if (user.id) {
       return (
         <Menu.Menu position='right'>
+          <Link to='/cart'>
+            <Menu.Item name='cart' />
+          </Link>
           <Menu.Item
             name='Logout'
             onClick={() => dispatch(handleLogout(history))}
@@ -20,6 +22,7 @@ class NavBar extends Component {
       );
     }
     return (
+    
       <Menu.Menu position='right'>
         <Link to='/register'>
           <Menu.Item name='Register' />
@@ -28,7 +31,26 @@ class NavBar extends Component {
           <Menu.Item name='Login' />
         </Link>
       </Menu.Menu>
+       
     );
+  }
+
+  leftNavs = () => {
+      const { user } = this.props;
+      if (user.id) { 
+        return (
+          <Menu.Menu>
+            <Link to='/menu'>
+              <Menu.Item name='menu' />
+            </Link>
+         </Menu.Menu>
+        );
+      }
+      return (
+      <Link to='/visitmenu'>
+        <Menu.Item name='menu' />
+       </Link>
+      )
   }
 
   render() {
@@ -42,12 +64,8 @@ class NavBar extends Component {
           <Link to='/about'>
             <Menu.Item name='about' />
           </Link>
-          <Link to='/menu'>
-            <Menu.Item name='menu' />
-          </Link>
-          <Link to='/cart'>
-            <Menu.Item name='cart' />
-          </Link>
+     
+          { this.leftNavs() }
           { this.rightNavs() }
         </Menu>
         </Segment>

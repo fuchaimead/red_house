@@ -9,6 +9,7 @@ import Home from './Home';
 import Footer from './Footer';
 import About from './About';
 import Menu from './Menu';
+import VisitorMenu from './VisitorMenu';
 import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/about' component={About} />
             <Route exact path='/menu' component={Menu} />
+            <Route exact path='/visitmenu' component={VisitorMenu} />
             <Route exact path='/cart' component={Cart} />
             <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />
