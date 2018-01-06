@@ -2,7 +2,7 @@ import React, { Component} from 'react'
 import axios from 'axios'
 import { setHeaders } from '../actions/headers'
 import { connect } from 'react-redux'
-import { Button, Modal, Header, Icon, Segment } from 'semantic-ui-react'
+import { Button, Modal, Header, Icon, Segment, Table, Container } from 'semantic-ui-react'
 import Wallpaper from '../images/Wallpaper.jpg'
 
 class Cart extends Component {
@@ -20,9 +20,12 @@ class Cart extends Component {
   displayCartItem = () => {
     return this.state.cartItems.map( each => {
       return (
-        <li>
-          {each.name} => {each.price}
-        </li>
+        <Table> 
+         <Table.Header> 
+           <Table.HeaderCell > {each.name}  </Table.HeaderCell>
+           <Table.HeaderCell > ${each.price}</Table.HeaderCell>
+        </Table.Header> 
+        </Table> 
       )
     })
   }
@@ -39,16 +42,14 @@ class Cart extends Component {
       <div style={styles.image}>
       <Segment style={styles.opacity}>
       <Header as='h1' textAlign='center'>Cart Component</Header>
-
-
-
-      <ul>
+      <Container>
         {this.displayCartItem()}
-      </ul>
+      </Container>
+      <br />
+      <Container> 
         <Modal
           trigger={<Button onClick={this.handleOpen}>Total</Button>}
-          basic size=
-          'small'
+          basic size= 'small'
           open={this.state.modalOpen}
           onClose={this.handleClose}
           >
@@ -62,7 +63,7 @@ class Cart extends Component {
             </Button>
           </Modal.Actions>
         </Modal>
-
+        </Container>
       </Segment>
 
       </div>

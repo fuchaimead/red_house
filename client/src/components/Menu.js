@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Header, Segment, Button, List, Icon, Table, Container, Input} from 'semantic-ui-react';
+import { Header, Segment, Button, List, Icon, Table, Container, Input,  Dropdown, Modal } from 'semantic-ui-react';
 import axios from 'axios'
 import { setHeaders } from '../actions/headers'
 import { connect } from 'react-redux'
-import { Dropdown, Modal, Icon } from 'semantic-ui-react'
 import Wallpaper from '../images/Wallpaper.jpg'
+import { setFlash } from '../actions/flash'
 
 class Menu extends Component {
 
@@ -22,13 +22,14 @@ class Menu extends Component {
     if (this.props.user.is_admin){
       return this.state.items.map( item => {
         return (
-          <Segment inverted>
-          <List divided inverted relaxed>
+          <Segment basic>
+          <List>
             <List.Item key={item.id}>
               <List.Content>
                 <List.Header> {item.name} </List.Header>
                 {item.price}
               {item.description}
+              <br />
             <Button onClick={ () => this.removeItem(item.id)}>Delete Item</Button>
             <Modal
               trigger={<Button onClick={this.handleOpen}>Edit</Button>}
@@ -74,8 +75,7 @@ class Menu extends Component {
     else {
       return this.state.items.map( item => {
         return (
-
-            <Table.Row>
+           <Table.Row key={item.id}>
                 <Table.Cell>
                 {item.name}
                 <br />
@@ -85,7 +85,7 @@ class Menu extends Component {
                 ${item.price}
                 </Table.Cell>
                 <Table.Cell>
-             <Icon name='add' onClick={ () => this.addToCart(item.id)}> </Icon> 
+             <Icon name='add' onClick={ () => this.addToCart(item.id)} style={styles.pointer} > </Icon> 
                 </Table.Cell>
                 <Table.Cell>
                 <Input type='number'/> 
@@ -105,6 +105,7 @@ class Menu extends Component {
   addToCart = (itemId) => {
     axios.put(`/api/items/${itemId}`, {user_id: this.props.user.id})
       .then( res => {
+        this.props.dispatch(setFlash('Item Added to Cart', 'green'))
         console.log(res)
       })
   }
@@ -170,8 +171,10 @@ const styles = {
   header: {
     color: 'white',
     backgroundColor: 'black'
+  },
+  pointer: {
+    cursor: 'pointer'
   }
-
 }
 const mapStateToProps = (state) => {
   return { user: state.user }
