@@ -12,12 +12,14 @@ import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
 import { Switch, Route } from 'react-router-dom';
+import wallpaper from '../images/Wallpaper.jpg'
 
 class App extends Component {
   render() {
     return (
       <div>
         <NavBar />
+        <img src={wallpaper} alt='wallpaper' />
         <Flash />
         <FetchUser>
           <Switch>
