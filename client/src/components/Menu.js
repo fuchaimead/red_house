@@ -20,7 +20,7 @@ class Menu extends Component {
   }
 
   displayItem = () => {
-    if ( this.props.user.is_admin){
+    if (this.props.user.is_admin){
       return this.state.items.map( item => {
         return (
           <li key={item.id}>
@@ -45,11 +45,10 @@ class Menu extends Component {
         )
       })
     }
-
   }
 
   addToCart = (itemId) => {
-    axios.put(`/api/items/${itemId}`, {user_id: this.state.userId})
+    axios.put(`/api/items/${itemId}`, {user_id: this.props.user.id})
       .then( res => {
         console.log(res)
       })
@@ -80,5 +79,8 @@ const styles = {
     height: "100vh"
   }
 }
+const mapStateToProps = (state) => {
+  return { user: state.user }
+}
 
-export default connect()(Menu);
+export default connect(mapStateToProps)(Menu);
