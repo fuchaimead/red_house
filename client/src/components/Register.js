@@ -79,7 +79,7 @@ class Register extends Component {
             </Container>
           </Form.Field>
           <Segment basic textAlign='center'>
-            <Button type='submit'>Submit</Button>
+            <Button color='yellow'>Submit </Button>
           </Segment>
         </Form>
 

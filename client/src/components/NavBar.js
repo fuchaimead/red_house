@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../actions/auth';
 
+
 class NavBar extends Component {
   rightNavs = () => {
     const { user, dispatch, history } = this.props;
@@ -35,7 +36,7 @@ class NavBar extends Component {
   render() {
     return (
       <div>
-        <Segment inverted style={styles.corners}> 
+        <Segment inverted style={styles.corners}>
         <Menu inverted pointing secondary>
           <Link to='/'>
             <Menu.Item name='home' />
@@ -51,7 +52,7 @@ class NavBar extends Component {
           </Link>
           { this.rightNavs() }
         </Menu>
-        </Segment> 
+        </Segment>
       </div>
     );
   }

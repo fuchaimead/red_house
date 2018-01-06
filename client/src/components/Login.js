@@ -50,7 +50,8 @@ class Login extends Component {
             /></Container>
           </Form.Field>
           <Segment textAlign='center' basic>
-            <Button primary type='submit'>Submit</Button>
+          <Button color='yellow'>Submit </Button>
+
           </Segment>
         </Form>
 
