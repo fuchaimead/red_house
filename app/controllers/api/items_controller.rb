@@ -2,8 +2,7 @@ class Api::ItemsController < ApplicationController
   before_action :set_items, except: [:index, :index_cart ]
 
   def index
-    response = [Item.all, current_user.id]
-    render json: response
+    render json: Item.all
   end
 
   def index_cart
