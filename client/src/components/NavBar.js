@@ -3,7 +3,7 @@ import { Menu, Segment } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../actions/auth';
-import ProtectedRoute from 'react-router-protected-route'
+
 
 class NavBar extends Component {
   rightNavs = () => {
