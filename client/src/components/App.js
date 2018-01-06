@@ -19,6 +19,7 @@ class App extends Component {
     return (
       <div>
         <NavBar />
+
         <Flash />
         <FetchUser>
           <Switch>
@@ -35,5 +36,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;
