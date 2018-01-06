@@ -10,5 +10,12 @@ class Api::ItemsController < ApplicationController
       render json: @item
     else
       render json_error(@item)
+    end
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:name, :price, :description, :quantity, :user_id)
   end
 end
