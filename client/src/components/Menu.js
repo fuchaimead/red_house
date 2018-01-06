@@ -5,26 +5,33 @@ import axios from 'axios'
 
 class Menu extends Component {
 
-  state = { items: [] }
+  state = { items: [], userId: null }
 
   componentWillMount(){
     axios.get('/api/items')
       .then( res => {
-        this.setState({items: res.data})
+        this.setState({items: res.data[0], userId: res.data[1]})
       })
   }
 
   displayItem = () => {
     return this.state.items.map( item => {
       return (
-        <li>
+        <li key={item.id}>
           {item.name} =>
           {item.price} =>
           {item.description}
-          <Button>Add Item</Button>
+          <Button onClick={ () => this.addToCart(item.id)}>Add Item</Button>
         </li>
       )
     })
+  }
+
+  addToCart = (itemId) => {
+    axios.put(`/api/items/${itemId}`, {user_id: this.state.userId})
+      .then( res => {
+        console.log(res)
+      })
   }
 
   render() {
