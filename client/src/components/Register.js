@@ -5,14 +5,14 @@ import { registerUser } from '../actions/auth';
 import { setFlash } from '../actions/flash';
 
 class Register extends Component {
-  state = { email: '', password: '', passwordConfirmation: '' };
+  state = { email: '', password: '', passwordConfirmation: '', isAdmin: false };
 
   handleSubmit = event => {
     event.preventDefault();
-    const { email, password, passwordConfirmation } = this.state;
+    const { email, password, passwordConfirmation, isAdmin } = this.state;
     const { dispatch, history } = this.props;
     if (password === passwordConfirmation) {
-      dispatch(registerUser(email, password, passwordConfirmation, history));
+      dispatch(registerUser(email, password, passwordConfirmation, isAdmin, history));
     } else dispatch(setFlash('Passwords do not match!, please try again', 'red'));
   }
 
@@ -22,6 +22,10 @@ class Register extends Component {
     const id = event.target.id;
     const value = event.target.value;
     this.setState({ [id]: value });
+  }
+
+  toggleAdmin = () => {
+    this.setState({ isAdmin: !this.state.isAdmin })
   }
 
   render() {
