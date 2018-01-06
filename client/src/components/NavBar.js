@@ -33,7 +33,7 @@ class NavBar extends Component {
   render() {
     return (
       <div>
-        <Segment inverted> 
+        <Segment inverted style={styles.corners}> 
         <Menu inverted pointing secondary>
           <Link to='/'>
             <Menu.Item name='home' />
@@ -55,6 +55,11 @@ class NavBar extends Component {
   }
 }
 
+const styles = {
+  corners: {
+    borderRadius: '0px'
+  },
+}
 const mapStateToProps = state => {
   return { user: state.user };
 };
