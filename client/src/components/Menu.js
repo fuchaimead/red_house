@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Header, Segment, Button, List, Icon, Table, Container, Input} from 'semantic-ui-react';
+import { Header, Segment, Button, List, Icon, Table, Container, Input, Modal, Dropdown} from 'semantic-ui-react';
 import axios from 'axios'
 import { setHeaders } from '../actions/headers'
 import { connect } from 'react-redux'
-import { Dropdown, Modal, Icon } from 'semantic-ui-react'
 import Wallpaper from '../images/Wallpaper.jpg'
 
 class Menu extends Component {
