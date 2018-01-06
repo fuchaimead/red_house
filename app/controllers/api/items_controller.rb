@@ -26,9 +26,9 @@ class Api::ItemsController < ApplicationController
   end
 
   def destroy
-    item = @destroy
+    save_item = @item
     @item.destroy
-    render json: item
+    render json: save_item
   end
 
   private

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Segment, Button, List, Icon, Table, Container, Input,  Dropdown, Modal } from 'semantic-ui-react';
+import { Header, Segment, Button, List, Icon, Table, Container, Input,  Dropdown, Modal, TextArea } from 'semantic-ui-react';
 import axios from 'axios'
 import { setHeaders } from '../actions/headers'
 import { connect } from 'react-redux'
@@ -40,19 +40,20 @@ class Menu extends Component {
               >
               <Header icon='archive' content='Confirm Your Order' />
                 <Modal.Content>
-                  <input
+                  <Input
                     type="text"
                     id="name"
                     onChange={this.handleChange}
                     placeholder="Name"
                   />
-                  <textarea
+                  <TextArea
                     type="textArea"
+                    autoHeight
                     id="description"
                     onChange={this.handleChange}
                     placeholder="Description"
-                  ></textarea>
-                  <input
+                  ></TextArea>
+                  <Input
                     type="number"
                     id="price"
                     onChange={this.handleChange}
@@ -117,7 +118,8 @@ class Menu extends Component {
   removeItem = (itemId) => {
     axios.delete(`/api/items/${itemId}`)
       .then( res => {
-        console.log(res)
+        let filterArray = this.state.items.filter( item => item.id !== res.data.id)
+        this.setState({ items: [...filterArray]})
       })
   }
 
