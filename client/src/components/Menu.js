@@ -39,13 +39,19 @@ class Menu extends Component {
               onClose={this.handleClose}
               >
               <Header icon='archive' content='Confirm Your Order' />
+<<<<<<< HEAD
                 <Modal.Content>
+=======
+                <Modal.Content >
+>>>>>>> 6c6035fde15b7565bf257479ca80c55b66d66790
                   <Input
                     type="text"
                     id="name"
                     onChange={this.handleChange}
                     placeholder="Name"
+                    style={styles.padding}
                   />
+<<<<<<< HEAD
                   <TextArea
                     type="textArea"
                     autoHeight
@@ -53,12 +59,22 @@ class Menu extends Component {
                     onChange={this.handleChange}
                     placeholder="Description"
                   ></TextArea>
+=======
+>>>>>>> 6c6035fde15b7565bf257479ca80c55b66d66790
                   <Input
                     type="number"
                     id="price"
                     onChange={this.handleChange}
                     placeholder="Price"
                   />
+                  <br />
+                  <TextArea
+                    type="textArea"
+                    id="description"
+                    style={styles.padding}
+                    onChange={this.handleChange}
+                    placeholder="Description"
+                  ></TextArea>
                 </Modal.Content>
                 <Modal.Actions>
                 <Button color='green' onClick={ () => this.handleClose(item.id)} inverted>
@@ -180,6 +196,9 @@ const styles = {
   },
   pointer: {
     cursor: 'pointer'
+  }, 
+  padding: {
+    padding: '10px'
   }
 }
 const mapStateToProps = (state) => {
