@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Segment, Button, List, Icon, Table, Container, Input,  Dropdown, Modal } from 'semantic-ui-react';
+import { Header, Segment, Button, List, Icon, Table, Container, Input,  Dropdown, Modal, TextArea } from 'semantic-ui-react';
 import axios from 'axios'
 import { setHeaders } from '../actions/headers'
 import { connect } from 'react-redux'
@@ -39,25 +39,28 @@ class Menu extends Component {
               onClose={this.handleClose}
               >
               <Header icon='archive' content='Confirm Your Order' />
-                <Modal.Content>
-                  <input
+                <Modal.Content >
+                  <Input
                     type="text"
                     id="name"
                     onChange={this.handleChange}
                     placeholder="Name"
+                    style={styles.padding}
                   />
-                  <textarea
-                    type="textArea"
-                    id="description"
-                    onChange={this.handleChange}
-                    placeholder="Description"
-                  ></textarea>
-                  <input
+                  <Input
                     type="number"
                     id="price"
                     onChange={this.handleChange}
                     placeholder="Price"
                   />
+                  <br />
+                  <TextArea
+                    type="textArea"
+                    id="description"
+                    style={styles.padding}
+                    onChange={this.handleChange}
+                    placeholder="Description"
+                  ></TextArea>
                 </Modal.Content>
                 <Modal.Actions>
                 <Button color='green' onClick={ () => this.handleClose(item.id)} inverted>
@@ -174,6 +177,9 @@ const styles = {
   },
   pointer: {
     cursor: 'pointer'
+  }, 
+  padding: {
+    padding: '10px'
   }
 }
 const mapStateToProps = (state) => {
