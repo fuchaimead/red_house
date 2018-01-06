@@ -11,8 +11,8 @@ class CreateItems < ActiveRecord::Migration[5.1]
   end
 end
 <<<<<<< HEAD
-
-
-
 =======
->>>>>>> a4a37407d68aeb4b7f728fb48ae005b364c94759
+
+
+
+>>>>>>> d4aca069dc2e7e570553f47d4ffeb18507c7eeed

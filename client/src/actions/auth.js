@@ -11,9 +11,9 @@ const logout = () => {
   return { type: 'LOGOUT' };
 };
 
-export const registerUser = (email, password, passwordConfirmation, history) => {
+export const registerUser = (email, password, passwordConfirmation, isAdmin, history) => {
   return dispatch => {
-    axios.post('/api/auth', { email, password, password_confirmation: passwordConfirmation })
+    axios.post('/api/auth', { email, password, password_confirmation: passwordConfirmation, is_admin: isAdmin })
       .then(res => {
         const { data: { data: user }, headers } = res;
         dispatch(login(user));

@@ -18,7 +18,7 @@ class About extends Component {
         <Grid divided='vertically'>
           <Grid.Row columns={2}>
             <Grid.Column>
-      <Image src={slc} alt='salt lake city' style={styles.image} />
+      <Image src={slc} alt='salt lake city' style={styles.corners} />
             </Grid.Column>
             <Grid.Column>
               <Segment >
@@ -67,8 +67,10 @@ const styles = {
   p: {
     margin: '0',
     padding:'0'
+  },
+  corners: {
+    borderRadius: '10px'
   }
-
 }
 
 export default About;
