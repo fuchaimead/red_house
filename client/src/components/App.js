@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <div>
         <NavBar />
-        <img src={wallpaper} alt='wallpaper' />
+
         <Flash />
         <FetchUser>
           <Switch>
@@ -31,10 +31,11 @@ class App extends Component {
             <Route component={NoMatch} />
           </Switch>
         </FetchUser>
-        <Footer /> 
+        <Footer />
       </div>
     );
   }
 }
+
 
 export default App;
