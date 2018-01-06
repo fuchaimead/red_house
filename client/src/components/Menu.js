@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Header, Segment, Button } from 'semantic-ui-react';
 import axios from 'axios'
+import { setHeaders } from '../actions/headers'
+import { connect } from 'react-redux'
+import { Dropdown } from 'semantic-ui-react'
 
 
 class Menu extends Component {
@@ -11,6 +14,7 @@ class Menu extends Component {
     axios.get('/api/items')
       .then( res => {
         this.setState({items: res.data[0], userId: res.data[1]})
+        this.props.dispatch( setHeaders(res.headers) )
       })
   }
 
@@ -47,4 +51,4 @@ class Menu extends Component {
   }
 }
 
-export default Menu;
+export default connect()(Menu);
