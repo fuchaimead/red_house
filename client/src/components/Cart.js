@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component} from 'react'
 import axios from 'axios'
 import { setHeaders } from '../actions/headers'
 import { connect } from 'react-redux'
-import { Button, Modal, Header, Icon } from 'semantic-ui-react'
+import { Button, Modal, Header, Icon, Segment } from 'semantic-ui-react'
+import Wallpaper from '../images/Wallpaper.jpg'
 
 class Cart extends Component {
 
@@ -33,7 +34,10 @@ class Cart extends Component {
 
   render(){
     return(
-      <div>
+
+      <div style={styles.image}>
+      <Segment style={styles.opacity}>
+      <Header as='h1' textAlign='center'>Cart Component</Header>
 
 
 
@@ -57,10 +61,24 @@ class Cart extends Component {
             </Button>
           </Modal.Actions>
         </Modal>
+
+      </Segment>
+
       </div>
   )
   }
 
+}
+
+const styles = {
+  image: {
+    backgroundImage: "url("+ Wallpaper + ")",
+    backgroundSize: "cover"
+  },
+  opacity: {
+    backgroundColor: "rgba(200, 200, 200, 0)",
+    height: "100vh"
+  }
 }
 
 export default connect()(Cart);

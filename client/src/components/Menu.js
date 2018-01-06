@@ -4,6 +4,7 @@ import axios from 'axios'
 import { setHeaders } from '../actions/headers'
 import { connect } from 'react-redux'
 import { Dropdown } from 'semantic-ui-react'
+import Wallpaper from '../images/Wallpaper.jpg'
 
 
 class Menu extends Component {
@@ -40,14 +41,27 @@ class Menu extends Component {
 
   render() {
     return (
-      <Segment>
-        <Header as='h1' textAlign='center'>Menu Component</Header>
-        <ul>
-          {this.displayItem()}
-        </ul>
+      <div style={styles.image}>
+      <Segment style={styles.opacity}>
+      <Header as='h1' textAlign='center'>Menu Component</Header>
+      <ul>
+        {this.displayItem()}
+      </ul>
       </Segment>
+      </div>
 
     );
+  }
+}
+
+const styles = {
+  image: {
+    backgroundImage: "url("+ Wallpaper + ")",
+    backgroundSize: "cover"
+  },
+  opacity: {
+    backgroundColor: "rgba(200, 200, 200, 0)",
+    height: "100vh"
   }
 }
 
