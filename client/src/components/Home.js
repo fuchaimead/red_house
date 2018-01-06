@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Header, Segment } from 'semantic-ui-react';
-import wallpaper from '../images/Wallpaper.jpg'
+import Wallpaper from '../images/Wallpaper.jpg'
 
 class Home extends Component {
   render() {
@@ -16,11 +16,11 @@ class Home extends Component {
 
 const styles = {
   image: {
-    backgroundImage: "url(https://upload.wikimedia.org/wikipedia/commons/b/ba/Interior_of_Bang_Pa_In_Chinese_style_palace.JPG)",
+    backgroundImage: "url("+ Wallpaper + ")",
     backgroundSize: "cover"
   },
   opacity: {
-    backgroundColor: "rgba(200, 200, 200, .8)",
+    backgroundColor: "rgba(200, 200, 200, 0)",
     height: "100vh"
   }
 }
