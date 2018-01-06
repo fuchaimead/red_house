@@ -101,6 +101,10 @@ class Menu extends Component {
     this.setState({ [id]: value });
   }
 
+  addItem = () => {
+    console.log('click')
+  }
+
   addToCart = (itemId) => {
     axios.put(`/api/items/${itemId}`, {user_id: this.props.user.id})
       .then( res => {
@@ -115,8 +119,8 @@ class Menu extends Component {
       })
   }
 
-  editItem = (itemId) => {
-    axios.put(`/api/items/${itemId}`, {name: this.state.name, price: this.state.price, description: this.state.description})
+  addItem = (itemId) => {
+    axios.post(`/api/items`, {name: this.state.name, price: this.state.price, description: this.state.description})
       .then( res => {
         console.log(res)
       })
@@ -125,7 +129,7 @@ class Menu extends Component {
   handleOpen = () => this.setState({ modalOpen: true })
   handleClose = (itemId) => {
     this.setState({ modalOpen: false})
-    this.editItem(itemId)
+    // this.editItem(itemId)
   }
 
 
@@ -136,6 +140,27 @@ class Menu extends Component {
       <Segment style={styles.opacity}>
       <Header as='h1' textAlign='center'>Menu</Header>
       <Container>
+        <Segment>
+        <Button onClick={this.addItem}>Add Item</Button>
+        <input
+          type="text"
+          id="name"
+          onChange={this.handleChange}
+          placeholder="Name"
+        />
+        <textarea
+          type="textArea"
+          id="description"
+          onChange={this.handleChange}
+          placeholder="Description"
+        ></textarea>
+        <input
+          type="number"
+          id="price"
+          onChange={this.handleChange}
+          placeholder="Price"
+        />
+        </Segment>
         <Table>
           <Table.Header>
             <Table.Row>

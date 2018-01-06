@@ -1,5 +1,5 @@
 class Api::ItemsController < ApplicationController
-  before_action :set_items, except: [:index, :index_cart ]
+  before_action :set_items, except: [:index, :index_cart, :create ]
 
   def index
     render json: Item.all
@@ -7,6 +7,15 @@ class Api::ItemsController < ApplicationController
 
   def index_cart
     render json: current_user.items
+  end
+
+  def create
+    item = Item.new(item_params)
+    if item.save
+      render json: item
+    else
+      json_error(item)
+    end
   end
 
   def update
@@ -17,7 +26,9 @@ class Api::ItemsController < ApplicationController
   end
 
   def destroy
+    item = @destroy
     @item.destroy
+    render json: item
   end
 
   private
