@@ -7,7 +7,8 @@ class Home extends Component {
     return (
       <div style={styles.image}>
       <Segment style={styles.opacity}>
-      <Header as='h1' textAlign='center'>Home Component</Header>
+      <Header as='h1' textAlign='center'>Red House Chinese Restaurant</Header>
+        
       </Segment>
       </div>
     );
