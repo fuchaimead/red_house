@@ -85,10 +85,10 @@ class Menu extends Component {
                 ${item.price}
                 </Table.Cell>
                 <Table.Cell>
-            <Icon name='add' onClick={ () => this.addToCart(item.id)}> </Icon>
+             <Icon name='add' onClick={ () => this.addToCart(item.id)}> </Icon> 
                 </Table.Cell>
                 <Table.Cell>
-                <Input />
+                <Input type='number'/> 
                 </Table.Cell>
               </Table.Row>
         )
@@ -136,14 +136,14 @@ class Menu extends Component {
       <div style={styles.image}>
       <Segment style={styles.opacity}>
       <Header as='h1' textAlign='center'>Menu</Header>
-      <Container>
-        <Table>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Menu Items</Table.HeaderCell>
-              <Table.HeaderCell>Price</Table.HeaderCell>
-              <Table.HeaderCell>Add to Cart</Table.HeaderCell>
-              <Table.HeaderCell>Quantity</Table.HeaderCell>
+      <Container> 
+        <Table> 
+          <Table.Header > 
+            <Table.Row >
+              <Table.HeaderCell style={styles.header}>Menu Items</Table.HeaderCell>
+              <Table.HeaderCell style={styles.header}>Price</Table.HeaderCell>
+              <Table.HeaderCell style={styles.header}>Add to Cart</Table.HeaderCell>
+              <Table.HeaderCell style={styles.header}>Quantity</Table.HeaderCell>
           </Table.Row>
           </Table.Header>
            <Table.Body>
@@ -167,9 +167,11 @@ const styles = {
     backgroundColor: "rgba(200, 200, 200, 0)",
     height: "100vh"
   },
-  icon: {
-    color: 'white'
+  header: {
+    color: 'white',
+    backgroundColor: 'black'
   }
+
 }
 const mapStateToProps = (state) => {
   return { user: state.user }
