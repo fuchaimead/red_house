@@ -16,6 +16,10 @@ class Api::ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item.destroy
+  end
+
   private
 
   def item_params
