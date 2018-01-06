@@ -24,9 +24,9 @@ class About extends Component {
               </Segment> 
               <Segment > 
               <strong> About Us </strong> 
-              <p> 在这里吃中国菜</p> 
-              <p style={styles.p}> 1465 S State St East Side </p>
-              <p style={styles.p}> Salt Lake City </p>  
+              <p style={styles.p}> 在这里吃中国菜</p> 
+              <p style={styles.p}> 你不会饿在这里 </p>
+              <p style={styles.p}> 盐湖城 </p>  
               </Segment> 
             <Segment> 
               <strong> Hours </strong> 
