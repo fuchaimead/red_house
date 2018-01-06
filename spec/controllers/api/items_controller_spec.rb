@@ -6,4 +6,5 @@ RSpec.describe Api::ItemsController, type: :controller do
   let(:json) { JSON.parse(response.body) }
 
   describe "GET index" do
+    let()
     
