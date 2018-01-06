@@ -9,27 +9,43 @@ import Wallpaper from '../images/Wallpaper.jpg'
 
 class Menu extends Component {
 
-  state = { items: [], userId: null }
+  state = { items: [] }
 
   componentWillMount(){
     axios.get('/api/items')
       .then( res => {
-        this.setState({items: res.data[0], userId: res.data[1]})
+        this.setState({items: res.data })
         this.props.dispatch( setHeaders(res.headers) )
       })
   }
 
   displayItem = () => {
-    return this.state.items.map( item => {
-      return (
-        <li key={item.id}>
-          {item.name} =>
-          {item.price} =>
-          {item.description}
-          <Button onClick={ () => this.addToCart(item.id)}>Add Item</Button>
-        </li>
-      )
-    })
+    if ( this.props.user.is_admin){
+      return this.state.items.map( item => {
+        return (
+          <li key={item.id}>
+            {item.name} =>
+            {item.price} =>
+            {item.description}
+            <Button onClick={ () => this.addToCart(item.id)}>Delete Item</Button>
+            <Button onClick={ () => this.addToCart(item.id)}>Edit Item</Button>
+          </li>
+        )
+      })
+    }
+    else {
+      return this.state.items.map( item => {
+        return (
+          <li key={item.id}>
+            {item.name} =>
+            {item.price} =>
+            {item.description}
+            <Button onClick={ () => this.addToCart(item.id)}>Add Item</Button>
+          </li>
+        )
+      })
+    }
+
   }
 
   addToCart = (itemId) => {
