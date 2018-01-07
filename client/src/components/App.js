@@ -10,7 +10,7 @@ import Footer from './Footer';
 import About from './About';
 import Menu from './Menu';
 import VisitorMenu from './VisitorMenu';
-import ProtectedRoute from './ProtectedRoute';
+// import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
 import { Switch, Route } from 'react-router-dom';

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Header, Segment, Table, Container, Input} from 'semantic-ui-react';
+import { Header, Segment, Table, Container } from 'semantic-ui-react';
 import axios from 'axios'
 import { setHeaders } from '../actions/headers'
 import { connect } from 'react-redux'
 import Wallpaper from '../images/Wallpaper.jpg'
-import { setFlash } from '../actions/flash'
 
 class Menu extends Component {
 
@@ -30,7 +29,7 @@ class Menu extends Component {
         <Table.Cell>
         ${item.price}
         </Table.Cell>
-    </Table.Row> 
+    </Table.Row>
       )
     })
   }
@@ -40,9 +39,9 @@ class Menu extends Component {
       <div style={styles.image}>
       <Segment style={styles.opacity}>
       <Header as='h1' textAlign='center'>Menu</Header>
-      <Container> 
-        <Table> 
-          <Table.Header > 
+      <Container>
+        <Table>
+          <Table.Header >
             <Table.Row >
               <Table.HeaderCell style={styles.header}>Menu Items</Table.HeaderCell>
               <Table.HeaderCell style={styles.header}>Price</Table.HeaderCell>

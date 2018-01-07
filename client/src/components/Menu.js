@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Segment, Button, List, Icon, Table, Container, Input,  Dropdown, Modal, TextArea } from 'semantic-ui-react';
+import { Header, Segment, Button, Icon, Table, Container, Input, TextArea } from 'semantic-ui-react';
 import axios from 'axios'
 import { setHeaders } from '../actions/headers'
 import { connect } from 'react-redux'
@@ -8,7 +8,7 @@ import { setFlash } from '../actions/flash'
 
 class Menu extends Component {
 
-  state = { items: [], modalOpen: false, name: '', price: '', description: '' }
+  state = { items: [], editing: 0, name: '', price: '', description: '', modalOpen: false }
 
   componentWillMount(){
     axios.get('/api/items')
@@ -18,75 +18,112 @@ class Menu extends Component {
       })
   }
 
+  handleChange = (event) => {
+    const id = event.target.id;
+    const value = event.target.value;
+    this.setState({ [id]: value });
+  }
+
+  addToCart = (itemId) => {
+    axios.put(`/api/items/${itemId}`, {user_id: this.props.user.id})
+      .then( res => {
+        this.props.dispatch(setFlash('Item Added to Cart', 'green'))
+        console.log(res)
+      })
+  }
+
+  removeItem = (itemId) => {
+    axios.delete(`/api/items/${itemId}`)
+      .then( res => {
+        let filterArray = this.state.items.filter( item => item.id !== res.data.id)
+        this.setState({ items: [...filterArray]})
+      })
+  }
+
+  setEdit = (item) => {
+    this.setState({editing: item.id,
+                   name: item.name,
+                   description: item.description,
+                   price: item.price
+                 })
+  }
+
+  sendEdit = (itemId) => {
+    axios.put(`/api/items/${itemId}`, { name: this.state.name,
+                                         description: this.state.description,
+                                         price: this.state.price })
+     .then( res => {
+       axios.get('/api/items')
+         .then( res => {
+           this.setState({items: res.data, editing: 0 })
+           this.props.dispatch( setHeaders(res.headers) )
+         })
+     })
+  }
+
   displayItem = () => {
     if (this.props.user.is_admin){
       return this.state.items.map( item => {
-        return (
-          <Segment basic>
-          <List>
-            <List.Item key={item.id}>
-              <List.Content>
-                <List.Header> {item.name} </List.Header>
-                {item.price}
-              {item.description}
-              <br />
-            <Button onClick={ () => this.removeItem(item.id)}>Delete Item</Button>
-            <Modal
-              trigger={<Button onClick={this.handleOpen}>Edit</Button>}
-              basic size=
-              'small'
-              open={this.state.modalOpen}
-              onClose={this.handleClose}
-              >
-              <Header icon='archive' content='Confirm Your Order' />
-<<<<<<< HEAD
-                <Modal.Content>
-=======
-                <Modal.Content >
->>>>>>> 6c6035fde15b7565bf257479ca80c55b66d66790
-                  <Input
-                    type="text"
-                    id="name"
-                    onChange={this.handleChange}
-                    placeholder="Name"
-                    style={styles.padding}
-                  />
-<<<<<<< HEAD
-                  <TextArea
-                    type="textArea"
-                    autoHeight
-                    id="description"
-                    onChange={this.handleChange}
-                    placeholder="Description"
-                  ></TextArea>
-=======
->>>>>>> 6c6035fde15b7565bf257479ca80c55b66d66790
-                  <Input
-                    type="number"
-                    id="price"
-                    onChange={this.handleChange}
-                    placeholder="Price"
-                  />
-                  <br />
-                  <TextArea
-                    type="textArea"
-                    id="description"
-                    style={styles.padding}
-                    onChange={this.handleChange}
-                    placeholder="Description"
-                  ></TextArea>
-                </Modal.Content>
-                <Modal.Actions>
-                <Button color='green' onClick={ () => this.handleClose(item.id)} inverted>
-                  <Icon name='checkmark' /> Update
-                </Button>
-              </Modal.Actions>
-            </Modal>
-              </List.Content>
-            </List.Item>
-          </List>
-        </Segment>
-        )
+        if (this.state.editing === item.id){
+          return (
+            <Table.Row key={item.id}>
+              <Table.Cell>
+               <Input
+                id='name'
+                value={this.state.name}
+                onChange={this.handleChange}
+                />
+              </Table.Cell>
+              <Table.Cell>
+               <TextArea
+                id='description'
+                value={this.state.description}
+                onChange={this.handleChange}
+                cols="45"
+               />
+             </Table.Cell>
+             <Table.Cell>
+               $<Input
+                id='price'
+                value={this.state.price}
+                onChange={this.handleChange}
+                type='number'
+                step={0.01}
+                />
+             </Table.Cell>
+             <Table.Cell>
+               <Button onClick={() => this.sendEdit(item.id)}>
+                Edit Item
+               </Button>
+               <Button onClick={() => this.removeItem(item.id)}>
+                 Delete Item
+               </Button>
+             </Table.Cell>
+           </Table.Row>
+          )
+        } else {
+            return(
+              <Table.Row key={item.id}>
+                   <Table.Cell>
+                     {item.name}
+                   </Table.Cell>
+                   <Table.Cell>
+                     {item.description}
+                   </Table.Cell>
+                   <Table.Cell>
+                     {item.price}
+                   </Table.Cell>
+                   <Table.Cell>
+                     <Button onClick={ () => this.setEdit(item)}>
+                      Edit Item
+                     </Button>
+                     <Button onClick={ () => this.removeItem(item.id)}>
+                       Delete Item
+                     </Button>
+                   </Table.Cell>
+                 </Table.Row>
+            )
+          }
       })
     }
     else {
@@ -113,48 +150,35 @@ class Menu extends Component {
     }
   }
 
-  handleChange = event => {
-    const id = event.target.id;
-    const value = event.target.value;
-    this.setState({ [id]: value });
-  }
 
-  addItem = () => {
-    console.log('click')
-  }
-
-  addToCart = (itemId) => {
-    axios.put(`/api/items/${itemId}`, {user_id: this.props.user.id})
-      .then( res => {
-        this.props.dispatch(setFlash('Item Added to Cart', 'green'))
-        console.log(res)
-      })
-  }
-
-  removeItem = (itemId) => {
-    axios.delete(`/api/items/${itemId}`)
-      .then( res => {
-        let filterArray = this.state.items.filter( item => item.id !== res.data.id)
-        this.setState({ items: [...filterArray]})
-      })
-  }
-
-  addItem = (itemId) => {
-    axios.post(`/api/items`, {name: this.state.name, price: this.state.price, description: this.state.description})
-      .then( res => {
-        console.log(res)
-      })
-  }
-
-  handleOpen = () => this.setState({ modalOpen: true })
-  handleClose = (itemId) => {
-    this.setState({ modalOpen: false})
-    // this.editItem(itemId)
-  }
 
 
 
   render() {
+    if (this.props.user.is_admin){
+      return(
+      <div style={styles.image}>
+      <Segment style={styles.opacity}>
+      <Header as='h1' textAlign='center'>Menu</Header>
+      <Container>
+        <Table>
+          <Table.Header >
+            <Table.Row >
+              <Table.HeaderCell style={styles.header}>Menu Name</Table.HeaderCell>
+              <Table.HeaderCell style={styles.header}>Description</Table.HeaderCell>
+              <Table.HeaderCell style={styles.header}>Price</Table.HeaderCell>
+              <Table.HeaderCell style={styles.header}>Options</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+           <Table.Body>
+          {this.displayItem()}
+          </Table.Body>
+          </Table>
+        </Container>
+      </Segment>
+      </div>
+    )
+    }
     return (
       <div style={styles.image}>
       <Segment style={styles.opacity}>
@@ -170,7 +194,8 @@ class Menu extends Component {
           </Table.Row>
           </Table.Header>
            <Table.Body>
-          {this.displayItem()}
+            {this.displayItem()}
+
           </Table.Body>
           </Table>
         </Container>
@@ -196,7 +221,7 @@ const styles = {
   },
   pointer: {
     cursor: 'pointer'
-  }, 
+  },
   padding: {
     padding: '10px'
   }

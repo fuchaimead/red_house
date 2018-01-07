@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Segment } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Segment } from 'semantic-ui-react';
 import Cookie from '../images/fortunecookie.jpg'
 
 class NoMatch extends Component {
@@ -8,7 +7,7 @@ class NoMatch extends Component {
     return (
       <div style={styles.image}>
       <Segment style={styles.opacity}>
-  
+
       </Segment>
 
       </div>

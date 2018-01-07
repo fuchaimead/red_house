@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Segment, Container, Grid, List, Header } from 'semantic-ui-react'
 
-       
+
        class Footer extends Component {
          render() {
           return (
 
-         
+
        <div>
        <Segment inverted vertical style={{ padding: '5em 0em' }}>
           <Container>
@@ -15,17 +15,17 @@ import { Segment, Container, Grid, List, Header } from 'semantic-ui-react'
                 <Grid.Column width={3}>
                   <Header inverted as='h4' content='About' />
                   <List link inverted>
-                    <List.Item as='a'>
-                      <a href='https://www.doordash.com/store/red-house-salt-lake-city-157765/' target="_blank">DoorDash</a>
+                    <List.Item>
+                      <a href='https://www.doordash.com/store/red-house-salt-lake-city-157765/'>DoorDash</a>
                       </List.Item>
-                    <List.Item as='a'>
-                      <a href='https://www.yelp.com/biz/red-house-salt-lake-city' target="_blank">Yelp</a>
+                    <List.Item>
+                      <a href='https://www.yelp.com/biz/red-house-salt-lake-city'>Yelp</a>
                       </List.Item>
-                    <List.Item as='a'>
-                      <a href='https://bitcointicker.co/' target="_blank">BitCoin</a>
+                    <List.Item>
+                      <a href='https://bitcointicker.co/'>BitCoin</a>
                       </List.Item>
-                    <List.Item as='a'>
-                      <a href='https://en.wikipedia.org/wiki/Loch_Ness_Monster' target="_blank">Loch Ness</a>
+                    <List.Item>
+                      <a href='https://en.wikipedia.org/wiki/Loch_Ness_Monster'>Loch Ness</a>
                       </List.Item>
                   </List>
                 </Grid.Column>
