@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Header, Segment, Container, Image, Grid } from 'semantic-ui-react';
 import slc from '../images/salt-lake-city.jpg';
 import Wallpaper from '../images/Wallpaper.jpg'
-
+import Iframe from 'react-iframe'
 
 
 class About extends Component {
@@ -19,6 +19,14 @@ class About extends Component {
           <Grid.Row columns={2}>
             <Grid.Column>
       <Image src={slc} alt='salt lake city' style={styles.corners} />
+      <Iframe 
+        url="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12088.595485608912!2d-111.88668!3d40.758750299999996!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1515443706413" 
+        width="600" 
+        height="450" 
+        frameborder="0" 
+        style="border:0" 
+        allowfullscreen
+      /> 
             </Grid.Column>
             <Grid.Column>
               <Segment >
